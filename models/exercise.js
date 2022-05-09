@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Exercise.hasMany(models.ExerciseLog, { foreignKey: 'exerciseId' })
-      Exercise.belongsToMany(models.MuscleGroup, { through: 'MuscleExercises' })
+      Exercise.belongsTo(models.MuscleGroup, { foreignKey: 'muscleGroupId' })
     }
   }
   Exercise.init(
