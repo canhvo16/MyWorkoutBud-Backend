@@ -20,6 +20,14 @@ module.exports = {
       duration: {
         type: Sequelize.INTEGER
       },
+      exerciseLogId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'exerciseLogs',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

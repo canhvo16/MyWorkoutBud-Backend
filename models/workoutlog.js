@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      WorkoutLog.belongsTo(models.User, { foreignKey: 'userId' })
+      WorkoutLog.hasMany(models.ExerciseLog, { foreignKey: 'workoutLogId' })
     }
   }
   WorkoutLog.init(
@@ -16,14 +17,6 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       date: DataTypes.DATE,
       notes: DataTypes.STRING,
-      exerciseLogId: {
-        type: DataTypes.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'exerciseLogs',
-          key: 'id'
-        }
-      },
       userId: {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',

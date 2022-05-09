@@ -16,11 +16,11 @@ module.exports = {
           key: 'id'
         }
       },
-      setId: {
+      workoutLogId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'sets',
+          model: 'workoutLogs',
           key: 'id'
         }
       },

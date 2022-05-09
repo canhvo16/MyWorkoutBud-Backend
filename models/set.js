@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Set.belongsTo(models.ExerciseLog, { foreignKey: 'exerciseLogId' })
     }
   }
   Set.init(
@@ -16,7 +16,15 @@ module.exports = (sequelize, DataTypes) => {
       metric: DataTypes.STRING,
       weight: DataTypes.INTEGER,
       repetitions: DataTypes.INTEGER,
-      duration: DataTypes.INTEGER
+      duration: DataTypes.INTEGER,
+      exerciseLogId: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'exerciseLogs',
+          key: 'id'
+        }
+      }
     },
     {
       sequelize,

@@ -18,14 +18,6 @@ module.exports = {
       notes: {
         type: Sequelize.STRING
       },
-      exerciseLogId: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'exerciseLogs',
-          key: 'id'
-        }
-      },
       userId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
