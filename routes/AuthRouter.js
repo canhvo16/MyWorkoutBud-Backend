@@ -16,5 +16,6 @@ router.delete(
   middleware.verifyToken,
   controller.destroyAccount
 )
+router.get('/user/:id', controller.getUserById)
 
 module.exports = router

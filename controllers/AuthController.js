@@ -64,9 +64,19 @@ const destroyAccount = async (req, res) => {
   }
 }
 
+const getUserById = async (req, res) => {
+  try {
+    const user = await User.findByPk(req.params.id)
+    res.send(user)
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   Login,
   Register,
   CheckSession,
-  destroyAccount
+  destroyAccount,
+  getUserById
 }
