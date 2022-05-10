@@ -21,7 +21,7 @@ const getAllExercises = async (req, res) => {
 const getExercisesByMuscle = async (req, res) => {
   try {
     const exercises = await Exercise.findAll({
-      where: { muscleGroupId: req.body }
+      where: { muscleGroupId: req.params.muscleGroupId }
     })
     res.send(exercises)
   } catch (error) {
