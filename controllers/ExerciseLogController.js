@@ -9,7 +9,7 @@ const createExerciseLog = async (req, res) => {
   }
 }
 
-const getUserExerciseLogs = async (req, res) => {
+const getWorkoutLogExerciseLogs = async (req, res) => {
   try {
     const exerciseLogs = await ExerciseLog.findAll({
       where: { workoutLogId: req.params.workoutLogId }
@@ -31,6 +31,6 @@ const destroyExerciseLog = async (req, res) => {
 
 module.exports = {
   createExerciseLog,
-  getUserExerciseLogs,
+  getWorkoutLogExerciseLogs,
   destroyExerciseLog
 }
