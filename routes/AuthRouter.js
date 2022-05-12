@@ -16,6 +16,24 @@ router.delete(
   middleware.verifyToken,
   controller.destroyAccount
 )
+router.put(
+  '/update-name',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.updateName
+)
+router.put(
+  '/update-photo',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.updatePhoto
+)
+router.put(
+  '/update-password',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.updatePassword
+)
 router.get('/user/:id', controller.getUserById)
 
 module.exports = router

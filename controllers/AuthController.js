@@ -73,10 +73,63 @@ const getUserById = async (req, res) => {
   }
 }
 
+const updateName = async (req, res) => {
+  try {
+    let name = req.body.name
+    const user = await User.findOne({ where: { email: req.body.email } })
+    if (user) {
+      await user.update({ name })
+      res.send({ status: 'Success', msg: 'Name updated!' })
+    } else {
+      res.status(401).send({ status: 'Error', msg: 'Invalid email!' })
+    }
+  } catch (error) {
+    throw error
+  }
+}
+
+const updatePhoto = async (req, res) => {
+  try {
+    let photo = req.body.photo
+    const user = await User.findOne({ where: { email: req.body.email } })
+    if (user) {
+      await user.update({ photo })
+      res.send({ status: 'Success', msg: 'Photo updated!' })
+    } else {
+      res.status(401).send({ status: 'Error', msg: 'Invalid email!' })
+    }
+  } catch (error) {
+    throw error
+  }
+}
+
+const updatePassword = async (req, res) => {
+  try {
+    const user = await User.findOne({ where: { email: req.body.email } })
+    if (
+      user &&
+      (await middleware.comparePassword(
+        user.dataValues.passwordDigest,
+        req.body.oldPassword
+      ))
+    ) {
+      let passwordDigest = await middleware.hashPassword(req.body.newPassword)
+      await user.update({ passwordDigest })
+      return res.send({ status: 'Success', payload: user })
+    }
+    res.status(401).send({ status: 'Error', msg: 'Invalid credentials!' })
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   Login,
   Register,
   CheckSession,
   destroyAccount,
-  getUserById
+  getUserById,
+  updateName,
+  updatePhoto,
+  updatePassword
 }
