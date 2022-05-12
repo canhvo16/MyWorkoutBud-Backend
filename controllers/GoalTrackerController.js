@@ -29,8 +29,32 @@ const destroyGoalTracker = async (req, res) => {
   }
 }
 
+const addDaysCompleted = async (req, res) => {
+  try {
+    const goal = await GoalTracker.findByPk(req.params.goalTrackerId)
+    let daysCompleted = goal.daysCompleted + 1
+    await goal.update({ daysCompleted })
+    res.send({ status: 'Success', msg: 'Goal Updated!' })
+  } catch (error) {
+    throw error
+  }
+}
+
+const minusDaysCompleted = async (req, res) => {
+  try {
+    const goal = await GoalTracker.findByPk(req.params.goalTrackerId)
+    let daysCompleted = goal.daysCompleted - 1
+    await goal.update({ daysCompleted })
+    res.send({ status: 'Success', msg: 'Goal Updated!' })
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   createGoalTracker,
   getUserGoalTrackers,
-  destroyGoalTracker
+  destroyGoalTracker,
+  addDaysCompleted,
+  minusDaysCompleted
 }
