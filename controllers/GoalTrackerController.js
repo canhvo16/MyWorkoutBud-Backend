@@ -34,6 +34,11 @@ const addDaysCompleted = async (req, res) => {
     const goal = await GoalTracker.findByPk(req.params.goalTrackerId)
     let daysCompleted = goal.daysCompleted + 1
     await goal.update({ daysCompleted })
+    let completed
+    if (daysCompleted === goal.duration) {
+      completed = true
+      await goal.update({ completed })
+    }
     res.send({ status: 'Success', msg: 'Goal Updated!' })
   } catch (error) {
     throw error
@@ -45,6 +50,11 @@ const minusDaysCompleted = async (req, res) => {
     const goal = await GoalTracker.findByPk(req.params.goalTrackerId)
     let daysCompleted = goal.daysCompleted - 1
     await goal.update({ daysCompleted })
+    let completed
+    if (daysCompleted !== goal.duration) {
+      completed = false
+      await goal.update({ completed })
+    }
     res.send({ status: 'Success', msg: 'Goal Updated!' })
   } catch (error) {
     throw error
