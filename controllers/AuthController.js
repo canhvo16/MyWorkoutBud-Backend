@@ -73,28 +73,14 @@ const getUserById = async (req, res) => {
   }
 }
 
-const updateName = async (req, res) => {
+const updateInfo = async (req, res) => {
   try {
     let name = req.body.name
-    const user = await User.findOne({ where: { email: req.body.email } })
-    if (user) {
-      await user.update({ name })
-      res.send({ status: 'Success', msg: 'Name updated!' })
-    } else {
-      res.status(401).send({ status: 'Error', msg: 'Invalid email!' })
-    }
-  } catch (error) {
-    throw error
-  }
-}
-
-const updatePhoto = async (req, res) => {
-  try {
     let photo = req.body.photo
     const user = await User.findOne({ where: { email: req.body.email } })
     if (user) {
-      await user.update({ photo })
-      res.send({ status: 'Success', msg: 'Photo updated!' })
+      await user.update({ name, photo })
+      res.send({ status: 'Success', msg: 'Info updated!' })
     } else {
       res.status(401).send({ status: 'Error', msg: 'Invalid email!' })
     }
@@ -129,7 +115,6 @@ module.exports = {
   CheckSession,
   destroyAccount,
   getUserById,
-  updateName,
-  updatePhoto,
+  updateInfo,
   updatePassword
 }

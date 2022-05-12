@@ -17,19 +17,13 @@ router.delete(
   controller.destroyAccount
 )
 router.put(
-  '/update-name',
+  '/updateInfo',
   middleware.stripToken,
   middleware.verifyToken,
-  controller.updateName
+  controller.updateInfo
 )
 router.put(
-  '/update-photo',
-  middleware.stripToken,
-  middleware.verifyToken,
-  controller.updatePhoto
-)
-router.put(
-  '/update-password',
+  '/updatePassword',
   middleware.stripToken,
   middleware.verifyToken,
   controller.updatePassword
