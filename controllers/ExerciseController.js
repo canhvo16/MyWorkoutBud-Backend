@@ -29,8 +29,18 @@ const getExercisesByMuscle = async (req, res) => {
   }
 }
 
+const getExerciseById = async (req, res) => {
+  try {
+    const exercise = await Exercise.findByPk(req.params.exerciseId)
+    res.send(exercise)
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   createExercise,
   getAllExercises,
-  getExercisesByMuscle
+  getExercisesByMuscle,
+  getExerciseById
 }
