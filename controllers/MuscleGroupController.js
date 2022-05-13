@@ -18,7 +18,17 @@ const getAllMuscleGroups = async (req, res) => {
   }
 }
 
+const getMuscleGroupById = async (req, res) => {
+  try {
+    const muscleGroup = await MuscleGroup.findByPk(req.params.muscleGroupId)
+    res.send(muscleGroup)
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   getAllMuscleGroups,
-  createMuscleGroup
+  createMuscleGroup,
+  getMuscleGroupById
 }
