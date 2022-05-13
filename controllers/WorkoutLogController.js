@@ -29,8 +29,18 @@ const destroyWorkoutLog = async (req, res) => {
   }
 }
 
+const getWorkoutLogById = async (req, res) => {
+  try {
+    const workoutLog = await WorkoutLog.findByPk(req.params.workoutLogId)
+    res.send(workoutLog)
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   createWorkoutLog,
   getUserWorkoutLogs,
-  destroyWorkoutLog
+  destroyWorkoutLog,
+  getWorkoutLogById
 }
