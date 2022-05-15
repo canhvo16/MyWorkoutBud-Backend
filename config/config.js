@@ -9,6 +9,7 @@ module.exports = {
     dialect: 'postgres'
   },
   production: {
+    use_env_variable: 'DATABASE_URL',
     database: 'myWorkoutBud_production',
     dialect: 'postgres',
     dialectOptions: {
