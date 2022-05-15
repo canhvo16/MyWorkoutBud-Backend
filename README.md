@@ -25,8 +25,8 @@ MyWorkoutBud is a full stack PERN application inspired by MyFitnessPal to help u
 
 ## **_Screenshots_**
 
-![Image](src/assets/MyWorkoutBud-Home.png)
-![Image](src/assets/MyWorkoutBud-Profile.png)
+![Image](assets/MyWorkoutBud-Home.png)
+![Image](assets/MyWorkoutBud-Profile.png)
 
 ---
 
